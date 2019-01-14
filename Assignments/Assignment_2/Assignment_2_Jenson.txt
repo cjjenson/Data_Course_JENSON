@@ -1,0 +1,34 @@
+Assignment 2
+Cd
+cd Desktop/data_Course/Assignments/Assignment_2
+
+1.
+cd ../../Data/data-shell/data/pdb
+wc -l m*.pdb
+
+2. 
+cd ../../Data/data-shell/data/pdb
+wc -l m*pdb > m_lines.txt
+mkdir -p ../../../../../Data_Course_JENSON/Assignments/Assignment_2
+mv ./m_lines.txt ../../../../../Data_Course_JENSON/Assignments/Assignment_2/m_lines.txt
+
+3. 
+cd ../../Data/data-shell/data
+cut -c12-19 animals.txt | sort -u > unique_animals.txt
+mv ./unique_animals.txt ../../../../Data_Course_Jenson/Assignments/Assignment_2/unique_animals.txt
+
+
+4. 
+cd ../../Data
+awk -F "\"*,\"*" '{print$5}' BioLog_Plate_Data.csv | sort -u > unique_C-substrates.txt | mv ./unique_C-Substrates.txt ../../Data_Course_JENSON/Assignments/Assignment_2/unique_C-substrates.txt
+
+5. 
+cd ../../Data/data-shell/data/
+find ./*.txt -type f -exec wc -l {} + | sort -rn
+
+
+6. 
+cd ../../Data/data-shell/many_files/
+Chmod +x ../scripts/sum_lines.sh
+find ./ -type f -exec ../scripts/sum_lines.sh > file_sums.txt {} \;
+mv ./file_sums.txt ../../../../Data_Course_JENSON/Assignments/Assignment_2/file_sums.txt
