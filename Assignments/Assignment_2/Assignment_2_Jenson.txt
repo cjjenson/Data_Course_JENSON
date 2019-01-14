@@ -28,6 +28,6 @@ find ./*.txt -type f -exec wc -l {} + | sort -rn
 
 6. 
 cd ../../Data/data-shell/many_files/
-Chmod +x ../scripts/sum_lines.sh
+chmod +x ../scripts/sum_lines.sh
 find ./ -type f -exec ../scripts/sum_lines.sh > file_sums.txt {} \;
 mv ./file_sums.txt ../../../../Data_Course_JENSON/Assignments/Assignment_2/file_sums.txt
