@@ -1,6 +1,5 @@
 Assignment 2
-Cd
-cd Desktop/data_Course/Assignments/Assignment_2
+All parts start at the assignment 2 folder in data_Course
 
 1.
 cd ../../Data/data-shell/data/pdb
