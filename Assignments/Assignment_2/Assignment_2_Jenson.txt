@@ -10,6 +10,7 @@ cd ../../Data/data-shell/data/pdb
 wc -l m*pdb > m_lines.txt
 mkdir -p ../../../../../Data_Course_JENSON/Assignments/Assignment_2
 mv ./m_lines.txt ../../../../../Data_Course_JENSON/Assignments/Assignment_2/m_lines.txt
+/Users/cjjenson/Desktop/data_Course/Assignments/Assignment_2/Assignment_2.pdf
 
 3. 
 cd ../../Data/data-shell/data
