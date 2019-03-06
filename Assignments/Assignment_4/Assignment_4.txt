@@ -1,0 +1,28 @@
+
+1. What other stuff does read.csv() do automatically?
+
+It is the principle means of reading tabular data. It assumes the first row is the headers. It assumes that \\n means now row. It reads all columns as character and then coverts it. 
+
+2. How is it different from read.csv2()?
+
+They are identical to read.table except for the defaults. They are intended for .csv files with variant use in countries that use a comma as a decimal point and a semicolon as a field separator. 
+
+3. Why does read.csv2() even exist?
+
+For different countries that use a comma as a decimal point and a semicolon as a field separator. 
+
+4. How could I change the parameters of read.csv() to make it so the class of the "State" column is "character" instead of "factor?"
+
+df$State=as.character(df$State)
+
+5. What command would give the summary stats for ONLY the Home.Value column?
+
+summary(df$Home.Value)
+
+6. What value is returned by the command: names(df)[4]  ?
+
+[1] "Home.Value"
+
+7. What is happening when you add (...col=df\$region) to the above plotting code? In other words, what happens when you run: plot(x=df\$Year,y=df\$Land.Value,col=df\$region)
+
+It changes the color of each point by the region. However, it does not state a key.
