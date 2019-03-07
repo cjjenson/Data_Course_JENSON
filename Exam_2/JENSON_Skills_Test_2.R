@@ -25,7 +25,7 @@ ggplot(salary, aes(x=Tier, y=Salary, fill=Rank)) +
   ggtitle("Faculty Salaries - 1995") + theme(plot.title = element_text(hjust = 0.5)) 
 
 #4.  Export this delightful boxplot to a file named "LASTNAME_exam2_plot1.jpeg" (10 points)
-jpeg("./JENSON_exam2_plot2.jpeg")
+jpeg("./JENSON_exam2_plot1.jpeg")
 ggplot(salary, aes(x=Tier, y=Salary, fill=Rank)) + 
   geom_boxplot() +
   ggtitle("Faculty Salaries - 1995") + 
