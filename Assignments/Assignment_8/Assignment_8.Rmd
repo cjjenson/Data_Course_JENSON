@@ -1,0 +1,131 @@
+---
+title: "Assignment 8"
+author: "gzahn"
+date: "March 23, 2019"
+output:
+  html_document:
+    df_print: paged
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# **Assignment 8**
+
+In this assignment, you will use R (within R-Studio) to:
+  
++ Load and clean a real data set
++ Conduct exploratory analyses, including informative figures
++ Build and test appropriate models
++ Draw conclusions about your data
++ Combine all of the above into a well-documented R-Markdown report and export (knit) it into an HTML file
+
+**All file paths should be relative, starting from the Assignment_8 directory!! (where you found this file)**
+
+**This means that you need to create a new R-Project named "Assignment_8.Rproj" in your Assignment_8 directory, and work from scripts within that.**
+
+
+## **For credit...**
+
+1.  Push a completed version of your Rproj and R-markdown file (details at end of this assignment) to GitHub
+2.  Your score will also depend on your analyses and presentation of your final report
+
+____________
+
+# Your tasks:
+
++ Use the data set "../../Data/GradSchool_Admissions.csv"
+```{r}
+df=read.csv("./GradSchool_Admissions.csv")
+library(tidyverse)
+library(MASS)
+library(modelr)
+```
++ You will explore and model the predictors of graduate school admission
+  - the "admit" column is coded as 1=success and 0=failure
+  - the other columns are the GRE score, the GPA, and the rank of the undergraduate institution, where I is "top-tier."
++ Document your data explorations, figures, and conclusions in a reproducible R-markdown report
+```{r}
+ggplot(df, aes(x=gpa,y=rank,col=admit)) + geom_jitter() + geom_smooth(method="lm")
+ggplot(df, aes(x=gre,y=rank,col=admit)) + geom_jitter() + geom_smooth(method="lm")
+ggplot(df, aes(x=gpa,y=admit,col=rank)) + geom_jitter() + geom_smooth(method="lm")
+ggplot(df, aes(x=gre,y=admit,col=rank)) + geom_jitter() + geom_smooth(method="lm")
+```
+
+```{r}
+mod1 = lm(admit ~ gre + gpa + rank, data = df)
+summary(mod1)
+
+mod2 = lm(admit ~ gre + gpa, data = df)
+summary(mod2)
+
+
+mod3 = lm(admit ~ gpa + rank, data = df)
+summary(mod3)
+
+```
+
+
+```{r}
+df = add_predictions(df, mod1, var= "mod1")
+df = add_predictions(df, mod2, var= "mod2")
+df = add_predictions(df, mod3, var="mod3")
+
+
+
+df=mutate(df, DIFF1 = abs(mod1 -admit))
+df=mutate(df, DIFF2 = abs(mod2 -admit))
+df=mutate(df, DIFF3 = abs(mod3 -admit))
+
+```
+
+Predit which one is the best to use
+```{r}
+mean(df$DIFF1)
+mean(df$DIFF2)
+mean(df$DIFF3)
+
+anova(mod1, mod2)
+anova(mod2, mod3)
+anova(mod1,mod3)
+
+stepAIC(mod1)
+stepAIC(mod2)
+stepAIC(mod3)
+```
+
+```{r}
+df = add_predictions(df, mod1, var= "mod1")
+df = add_predictions(df, mod2, var= "mod2")
+df = add_predictions(df, mod3, var="mod3")
+
+```
+
+Graph of the different predictive models
+Mod1 = Red
+Mod2 = Blue
+Mod3 = Green
+
+```{r}
+ggplot(df, aes(x=gre)) +
+  geom_jitter(aes(y=admit), alpha=.5) +
+  geom_jitter(aes(y=mod1), color="Red") +
+  geom_jitter(aes(y=mod2), color="Blue") + 
+  geom_jitter(aes(y=mod3), color="Green") 
+
+```
+
+
+
+Just for fun does GPA predit GRE Scores?
+
+```{r}
+
+mod4 =lm(gre ~ gpa, data= df)
+summary(mod4)
+ggplot(df, aes(x=gpa,y=gre,col=admit)) +geom_point() + geom_smooth(method="lm")
+
+```
+
+

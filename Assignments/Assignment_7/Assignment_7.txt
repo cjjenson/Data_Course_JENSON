@@ -1,0 +1,7 @@
+1.  Are any of your predicted response values from your best model scientifically meaningless? Explain.
+
+According to the ANOVA model, Nitrogen and Temperature was not significant. They had an F Value of 0.204 and 3.392 respectfully. However, it is when these variables are taken in connection with other variables that they become significant. 
+
+2. In your plots, did you find any non-linear relationships? If so, do a bit of research online and give a link to at least one resource explaining how to deal with this in R
+
+When we examine the relationship between growth rate and nitrogen it could have a parabola type relationship. In order to deal explore this relationship, we would have to specify what type of relationship and an equation dealing with y = ax^2 + mx + b instead of y=mx + b. 
